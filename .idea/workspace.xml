@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ca03d337-40fc-4eb9-a2f4-361c93933dd5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/Product.java" afterDir="false" />
+    <list default="true" id="f58750f5-1ad7-4471-b5ac-79a1d507c8f9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/SnackautomatChallenge/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SnackautomatChallenge/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SnackautomatChallenge/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SnackautomatChallenge/src/ch/noseryoung/blj/Product.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,12 +23,12 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
+  "associatedIndex": 4
 }]]></component>
-  <component name="ProjectId" id="2tJEBFKMWCDA4X1AoMoMfoG8Nmy" />
+  <component name="ProjectId" id="2tJGiLqsRhduc06IgLidf2CU0SA" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -33,12 +36,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "develop",
+    "git-widget-placeholder": "Feature/Product",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Projects/Projects_Noser/SnackautomatChallenge",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
@@ -55,12 +55,12 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ca03d337-40fc-4eb9-a2f4-361c93933dd5" name="Changes" comment="" />
-      <created>1740061642136</created>
+      <changelist id="f58750f5-1ad7-4471-b5ac-79a1d507c8f9" name="Changes" comment="" />
+      <created>1740062889877</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1740061642136</updated>
-      <workItem from="1740061643221" duration="517000" />
+      <updated>1740062889877</updated>
+      <workItem from="1740062890887" duration="174000" />
     </task>
     <servers />
   </component>

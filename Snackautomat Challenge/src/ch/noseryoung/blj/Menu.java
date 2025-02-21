@@ -7,10 +7,11 @@ import java.util.Scanner;
 
 public class Menu {
     ArrayList<Customer> customers = new ArrayList<>();
+    Scanner input = new Scanner(System.in);
 
     public void startMenu(){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Are you a customer(0) or an employee(other nu)?");
+
+        System.out.println("Are you a customer(0) or an employee(other numba)?");
         if(input.nextInt() == 0){
             System.out.println("Enter your Name: ");
             String name = input.nextLine();
@@ -23,7 +24,7 @@ public class Menu {
                 }
             }
         } else {
-            //ask for password (security
+            //ask for password 
         }
     }
 

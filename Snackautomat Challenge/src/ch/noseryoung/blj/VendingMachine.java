@@ -1,9 +1,10 @@
 package ch.noseryoung.blj;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class VendingMachine {
-    private ArrayList<Product> products;
+    public ArrayList<Product> products;
     private final int maxAmountOfProducts = 10;
 
     public VendingMachine() {
@@ -43,6 +44,10 @@ public class VendingMachine {
             }
         }
     }
+
+
+}
+
     public void startTransaction(Type type, int amount, Customer customer, Product product){
         if(customer.getCredit() >= product.getPrice() * amount){
             for(int i = 0; amount > i; i++){
@@ -56,3 +61,4 @@ public class VendingMachine {
 
 
 }
+

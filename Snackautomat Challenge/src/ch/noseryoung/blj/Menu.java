@@ -7,7 +7,12 @@ import java.util.Scanner;
 
 public class Menu {
     ArrayList<Customer> customers = new ArrayList<>();
+    VendingMachine vendingMachine;
     Scanner input = new Scanner(System.in);
+
+    public Menu(VendingMachine vendingMachine){
+        this.vendingMachine = vendingMachine;
+    }
 
     public void startMenu(){
 
@@ -30,8 +35,18 @@ public class Menu {
 
 
     public void customerMenu(Customer customer){
+        Scanner input = new Scanner(System.in);
         System.out.println("What product do you want to buy?");
-        // display available products
+        for(ProductSort productSort : vendingMachine.productSorts){
+            System.out.println(productSort.getName());
+        }
+        String productName = input.nextLine();
+        for (ProductSort productSort : vendingMachine.productSorts){
+            if(Objects.equals(productSort.getName(), productName)){
+
+            }
+        }
+
     }
     public boolean isAlreadyCustomer(String name) {
         for(Customer customer : customers){

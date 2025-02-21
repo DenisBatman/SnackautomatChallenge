@@ -8,7 +8,12 @@ import javax.smartcardio.*;
 
 public class Menu {
     static ArrayList<Customer> customers = new ArrayList<>();
+    VendingMachine vendingMachine;
     Scanner input = new Scanner(System.in);
+
+    public Menu(VendingMachine vendingMachine) {
+        this.vendingMachine = vendingMachine;
+    }
 
     public void startMenu(){
         System.out.println("Are you a customer(0) or an employee(other numba)?");
@@ -26,8 +31,8 @@ public class Menu {
             }
         } else {
             if(authentification()){
-                Maintence maintence = new Maintence();
-                maintence.maintence();
+                Maintenance maintenance = new Maintenance(vendingMachine);
+                maintenance.maintenanceMenu();
             }
         }
     }

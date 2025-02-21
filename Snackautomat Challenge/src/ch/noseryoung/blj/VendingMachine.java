@@ -1,4 +1,4 @@
 package ch.noseryoung.blj;
 
-public class Product {
+public class VendingMachine {
 }

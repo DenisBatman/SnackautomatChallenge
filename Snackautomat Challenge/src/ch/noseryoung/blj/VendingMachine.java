@@ -45,6 +45,18 @@ public class VendingMachine {
 
     }
 
+
+
+
+    public void startTransaction(Type type, int amount, Customer customer, Product product){
+        if(customer.getCredit() >= product.getPrice() * amount){
+            for(int i = 0; amount > i; i++){
+                buyProduct(type);
+            }            
+        }
+        else {
+            System.out.println("Nicht genügend Credits");
+
     public void insertCredit(Coins coins, Customer customer)
     {
         switch (coins)
@@ -68,6 +80,7 @@ public class VendingMachine {
             default:
                 System.out.println("No such Coin");
                 break;
+
         }
 
         

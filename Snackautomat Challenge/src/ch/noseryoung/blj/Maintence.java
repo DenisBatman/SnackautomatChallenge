@@ -21,4 +21,7 @@ public class Maintence {
         }
 
     }
+    private void addProduct(String productName, Type productSort){
+        vendingMachine.products.add();
+    }
 }

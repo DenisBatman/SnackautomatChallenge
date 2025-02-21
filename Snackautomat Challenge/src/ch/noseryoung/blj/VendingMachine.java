@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class VendingMachine {
-    private ArrayList<Product> products;
+    public ArrayList<Product> products;
     private final int maxAmountOfProducts = 10;
 
     public VendingMachine() {

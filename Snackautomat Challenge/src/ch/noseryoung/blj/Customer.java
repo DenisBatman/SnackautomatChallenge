@@ -5,7 +5,7 @@ public class Customer {
     final String name;
 
     public Customer(String name){
-        credit = 100;
+        credit = 10;
         this.name = name;
     }
 

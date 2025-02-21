@@ -1,48 +1,48 @@
 package ch.noseryoung.blj;
 
 import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.Objects;
 
 public class VendingMachine {
-    public ArrayList<Product> products;
+    public ArrayList<ProductSort> productSorts;
     private final int maxAmountOfProducts = 10;
+    int vendingMachineCredits;
 
     public VendingMachine() {
-        products = new ArrayList<>();
+        productSorts = new ArrayList<ProductSort>();
     }
 
     public void fillEmptyMachine(){
-        for(int i = 0; maxAmountOfProducts > i; i++){
-            products.add(new Product(Type.COLA));
-            products.add(new Product(Type.SPRITE));
-            products.add(new Product(Type.SNICKERS));
-            products.add(new Product(Type.SANDWICH));
-        }
-    }
-    public void buyProduct(Type type){
-        for (Product product : products){
-            if(product.getProductSort() == type){
-                products.remove(product);
-                break;
-            }
-        }
-        fillProductStock(type);
+        productSorts.add(new ProductSort("COLA", 1.5));
+        productSorts.add(new ProductSort("SPRITE", 1.6));
+        productSorts.add(new ProductSort("SNICKERS", 2.5));
+        productSorts.add(new ProductSort("SANDWICH", 7.5));
     }
 
-    public void fillProductStock(Type type) {
-        int amountOfProductOfThisSort = 0;
-        for (Product product : products){
-            if(product.getProductSort() == type){
-                amountOfProductOfThisSort++;
+    public void buyProduct(String productName){
+        for (ProductSort productSort : productSorts){
+            if(Objects.equals(productSort.getName(), productName)){
+                productSort.products.removeFirst();
+                productSort.fillStock();
                 break;
             }
         }
-        if(amountOfProductOfThisSort < maxAmountOfProducts * 0.3){
-            for (int i = amountOfProductOfThisSort; maxAmountOfProducts > amountOfProductOfThisSort;
-                 amountOfProductOfThisSort++){
-                products.add(new Product(type));
+    }
+    public void startTransaction(String productName, int amount, Customer customer){
+        for (ProductSort productSort : productSorts){
+            if(Objects.equals(productSort.getName(), productName)){
+                if(customer.getCredit() >= productSort.getPrice() * amount && productSort.products.size() >= amount){
+                    for(int i = 0; amount > i; i++){
+                        buyProduct(productName);
+                    }
+                }
+                else {
+                    System.out.println("Nicht genügend Credits");
+                }
+                break;
             }
         }
+
     }
 
 
@@ -56,9 +56,35 @@ public class VendingMachine {
         }
         else {
             System.out.println("Nicht genügend Credits");
-        }
-    }
 
+    public void insertCredit(Coins coins, Customer customer)
+    {
+        switch (coins)
+        {
+            case ONE:
+                break;
+            case FIVE:
+                break;
+            case TEN:
+                break;
+            case TWENTY:
+                break;
+            case FIFTY:
+                break;
+            case DOLLAR:
+                break;
+            case TWO_DOLLARS:
+                break;
+            case FIVE_DOLLARS:
+                break;
+            default:
+                System.out.println("No such Coin");
+                break;
+
+        }
+
+        
+    }
 
 }
 

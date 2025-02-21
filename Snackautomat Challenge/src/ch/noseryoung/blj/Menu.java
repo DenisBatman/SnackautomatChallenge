@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 
 public class Menu {
-    ArrayList<Customer> customers = new ArrayList<>();
+    static ArrayList<Customer> customers = new ArrayList<>();
     Scanner input = new Scanner(System.in);
 
     public void startMenu(){

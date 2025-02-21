@@ -6,6 +6,7 @@ import java.util.Objects;
 public class VendingMachine {
     public ArrayList<ProductSort> productSorts;
     private final int maxAmountOfProducts = 10;
+    int vendingMachineCredits;
 
     public VendingMachine() {
         productSorts = new ArrayList<ProductSort>();
@@ -44,6 +45,33 @@ public class VendingMachine {
 
     }
 
+    public void insertCredit(Coins coins, Customer customer)
+    {
+        switch (coins)
+        {
+            case ONE:
+                break;
+            case FIVE:
+                break;
+            case TEN:
+                break;
+            case TWENTY:
+                break;
+            case FIFTY:
+                break;
+            case DOLLAR:
+                break;
+            case TWO_DOLLARS:
+                break;
+            case FIVE_DOLLARS:
+                break;
+            default:
+                System.out.println("No such Coin");
+                break;
+        }
+
+        
+    }
 
 }
 

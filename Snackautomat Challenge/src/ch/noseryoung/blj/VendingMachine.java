@@ -46,7 +46,7 @@ public class VendingMachine {
     }
 
 
-}
+
 
     public void startTransaction(Type type, int amount, Customer customer, Product product){
         if(customer.getCredit() >= product.getPrice() * amount){

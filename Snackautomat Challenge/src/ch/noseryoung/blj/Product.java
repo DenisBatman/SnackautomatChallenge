@@ -18,8 +18,6 @@ public class Product {
         }
     }
 
-
-
     public UUID getProductId() {
         return productId;
     }

@@ -43,4 +43,16 @@ public class VendingMachine {
             }
         }
     }
+    public void startTransaction(Type type, int amount, Customer customer, Product product){
+        if(customer.getCredit() >= product.getPrice() * amount){
+            for(int i = 0; amount > i; i++){
+                buyProduct(type);
+            }            
+        }
+        else {
+            System.out.println("Nicht genügend Credits");
+        }
+    }
+
+
 }

@@ -29,7 +29,8 @@ public class Menu {
 
 
     public void customerMenu(Customer customer){
-        
+        System.out.println("What product do you want to buy?");
+        // display available products
     }
     public boolean isAlreadyCustomer(String name) {
         for(Customer customer : customers){

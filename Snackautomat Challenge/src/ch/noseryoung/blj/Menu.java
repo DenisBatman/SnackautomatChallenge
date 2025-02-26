@@ -233,13 +233,14 @@ public class Menu {
                 System.out.println("Insufficient credit. You need $" +
                         String.format("%.2f", totalPrice) + " but you only have $" +
                         String.format("%.2f", customer.getCredit()));
-
+                /*
                 System.out.println("Would you like to add payment? (y/n)");
                 String addPayment = input.nextLine().trim().toLowerCase();
 
                 if(addPayment.equals("y") || addPayment.equals("yes")) {
                     vendingMachine.isInPayment(customer, totalPrice);
                 }
+                */
                 continue;
             }
 
@@ -272,6 +273,7 @@ public class Menu {
         }
 
         System.out.println("Thank you for using our vending machine!");
+        startMenu();
     }
 
     public boolean isAlreadyCustomer(String name) {

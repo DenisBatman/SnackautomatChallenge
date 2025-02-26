@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="75530912-d2e1-4a05-90c4-9594518a3188" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/Maintenance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/Maintenance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +42,10 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "Application.Vending Machine.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "Feature/Main",
+    "git-widget-placeholder": "develop",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -52,6 +54,15 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="Vending Machine" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="ch.noseryoung.blj.Main" />
+      <module name="Snackautomat Challenge" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

@@ -7,6 +7,7 @@ import java.util.Scanner;
 import javax.smartcardio.*;
 
 public class Menu {
+
     static ArrayList<Customer> customers = new ArrayList<>();
     VendingMachine vendingMachine;
     Scanner input = new Scanner(System.in);
@@ -31,8 +32,8 @@ public class Menu {
             }
         } else {
             if(authentification()){
-                Maintence maintence = new Maintence();
-                maintence.maintence();
+                Maintenance maintenance = new Maintenance(vendingMachine);
+                maintenance.maintenanceMenu();
             }
         }
     }
@@ -41,6 +42,7 @@ public class Menu {
         System.out.println("Put your NFC tag on the reader...");
 
         try {
+            // Get the terminal factory
             TerminalFactory factory = TerminalFactory.getDefault();
             List<CardTerminal> terminals = factory.terminals().list();
 
@@ -49,25 +51,55 @@ public class Menu {
                 return false;
             }
 
-            CardTerminal terminal = terminals.get(0);
+            // Look specifically for ACS ACR122U reader
+            CardTerminal terminal = null;
+            for (CardTerminal t : terminals) {
+                if (t.getName().contains("ACS ACR122U")) {
+                    terminal = t;
+                    break;
+                }
+            }
+
+            if (terminal == null) {
+                System.out.println("ACS ACR122U reader not found.");
+                return false;
+            }
+
             System.out.println("Using NFC Reader: " + terminal.getName());
 
-            // wait for nfc tag
-            terminal.waitForCardPresent(0);
+            // Wait for a card (30 seconds)
+            System.out.println("Waiting for card...");
+            if (!terminal.waitForCardPresent(30000)) {
+                System.out.println("No card detected within the timeout period.");
+                return false;
+            }
 
-            // Connect to the NFC tag
-            Card card = terminal.connect("*");
+            // Connect to the card
+            Card card = terminal.connect("T=1");
             CardChannel channel = card.getBasicChannel();
 
-            // get the card UID
-            byte[] commandUID = new byte[]{(byte) 0xFF, (byte) 0xCA, (byte) 0x00, (byte) 0x00, (byte) 0x00};
-            CommandAPDU command = new CommandAPDU(commandUID);
-            ResponseAPDU response = channel.transmit(command);
+            // Get ATR and print it
+            ATR atr = card.getATR();
+            byte[] atrBytes = atr.getBytes();
+            System.out.println("Card ATR: " + bytesToHex(atrBytes));
+
+            // Command for getting UID: FF CA 00 00 00
+            byte[] getUidCommand = new byte[]{(byte) 0xFF, (byte) 0xCA, (byte) 0x00, (byte) 0x00, (byte) 0x00};
+            ResponseAPDU response = channel.transmit(new CommandAPDU(getUidCommand));
+
+            // Check if command was successful (SW1SW2 = 9000)
+            if (response.getSW() != 0x9000) {
+                System.out.println("Failed to read card UID. Error code: " + Integer.toHexString(response.getSW()));
+                return false;
+            }
 
             byte[] uid = response.getData();
             String uidString = bytesToHex(uid);
 
             System.out.println("Detected Card UID: " + uidString);
+
+            // Disconnect from the card
+            card.disconnect(false);
 
             if (isAdminCard(uidString)) {
                 System.out.println("Authentication successful. Access granted.");
@@ -77,18 +109,22 @@ public class Menu {
                 System.out.println("If you believe this is a mistake, contact Admin (admin@snack.ch)");
                 return false;
             }
+        } catch (CardException e) {
+            System.out.println("Card Error: " + e.getMessage());
+            return false;
         } catch (Exception e) {
+            System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
             return false;
         }
     }
 
     private boolean isAdminCard(String uid) {
-        // List of admin NFC card UIDs
+        // List of admin NFC card UIDs - merged from both branches
         List<String> adminUIDs = List.of(
                 "04 5F 88 1A 6D 74 80", // Nepomuk
                 "04 1F 23 4A 01 4F 80", // Denis
-                "04 26 8B AA B6 57 80" // Michel
+                "04 26 8B AA B6 57 80", // Michel
         );
 
         System.out.println("Checking card UID against admin list:");
@@ -108,6 +144,7 @@ public class Menu {
     }
 
     public void customerMenu(Customer customer){
+        Scanner input = new Scanner(System.in);
         System.out.println("What product do you want to buy?");
         for(ProductSort productSort : vendingMachine.productSorts){
             System.out.println(productSort.getName());

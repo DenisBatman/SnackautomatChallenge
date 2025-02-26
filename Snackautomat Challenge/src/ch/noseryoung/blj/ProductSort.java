@@ -1,8 +1,10 @@
 package ch.noseryoung.blj;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class ProductSort {
+    public BufferedImage image;
     int MAX_AMOUNT_OF_PRODUCTS = 10;
     public ArrayList<Product> products;
     private final String name;
@@ -11,7 +13,18 @@ public class ProductSort {
     public ProductSort(String name, double price){
         numberOfProducts = 0;
         this.name = name;
+        switch (name) {
+            case "Cola":
+                //image = getImage("/products/cola");
+                break;
+            case "Sprite":
+                //image = getImage("/products/sprite");
+                break;
+            default:
+
+        }
         for(int i = 0; MAX_AMOUNT_OF_PRODUCTS > i; i++){
+            assert products != null;
             products.add(new Product(name));
             numberOfProducts++;
         }

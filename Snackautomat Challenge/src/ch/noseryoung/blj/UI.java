@@ -46,6 +46,17 @@ public class UI extends JPanel implements Runnable{
             x += MARGIN;
             graphics2D.drawImage(productSort.image, x, y, SIZE, SIZE ,null);
 
+            //buttons (funktioniert noch nicht)
+            JFrame frame = new JFrame("Buttoooons");
+            frame.setSize(400,300);
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setLayout(null);
+
+            JButton button = new JButton("Sigmabutton");
+            button.setBounds(100,50,150,40);
+
+            frame.add(button);
+            frame.setVisible(true);
         }
     }
 

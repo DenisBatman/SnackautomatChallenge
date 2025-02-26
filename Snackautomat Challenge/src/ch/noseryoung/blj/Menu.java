@@ -125,7 +125,7 @@ public class Menu {
         List<String> adminUIDs = List.of(
                 "04 5F 88 1A 6D 74 80", // Nepomuk
                 "04 1F 23 4A 01 4F 80", // Denis
-                "04 26 8B AA B6 57 80", // Michel
+                "04 26 8B AA B6 57 80" // Michel
         );
 
         System.out.println("Checking card UID against admin list:");

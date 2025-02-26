@@ -1,6 +1,7 @@
 package ch.noseryoung.blj;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,32 +10,26 @@ import java.util.Objects;
 public class ProductSort {
     public BufferedImage image;
     public static final int MAX_AMOUNT_OF_PRODUCTS = 10;
-    public ArrayList<Product> products;
+    public ArrayList<Product> products = new ArrayList<Product>();
     private final String name;
     private int numberOfProducts;
     private double price;
+    private final int SIZE = 80;
+    public int x;
+    public int y;
 
     public ProductSort(String name, double price){
         numberOfProducts = 0;
         this.name = name;
         this.price = price;
         this.numberOfProducts = 0;
-        switch (name) {
-            case "Cola":
-                //image = getImage("/products/cola");
-                break;
-            case "Sprite":
-                //image = getImage("/products/sprite");
-                break;
-            default:
-
-        }
         for(int i = 0; MAX_AMOUNT_OF_PRODUCTS > i; i++){
             assert products != null;
             products.add(new Product(name));
             numberOfProducts++;
         }
         this.price = price;
+        this.image = getImage("/products/" + name);
     }
 
     public void fillStock(){
@@ -44,7 +39,27 @@ public class ProductSort {
             }
         }
     }
+    public void draw(Graphics2D graphics2D, int x, int y) {
+        this.x = x + (SIZE/2);
+        this.y = y + (SIZE/2);
+        if(image != null){
+            graphics2D.drawImage(image, x, y, SIZE, SIZE ,null);
+        } else {
+            graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 45));
+            graphics2D.setColor(Color.WHITE);
+            graphics2D.drawString(name, x, y);
+        }
 
+    }
+    public BufferedImage getImage (String imagePath){
+        BufferedImage image = null;
+        try{
+            image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
+        } catch(IOException exception) {
+            exception.printStackTrace();
+        }
+        return image;
+    }
 
     public BufferedImage getImage() { return image; }
 

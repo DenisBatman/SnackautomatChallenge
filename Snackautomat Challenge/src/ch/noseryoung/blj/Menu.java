@@ -7,6 +7,8 @@ import java.util.Objects;
 import java.util.Scanner;
 import javax.smartcardio.*;
 
+import static java.lang.System.exit;
+
 public class Menu {
 
     static ArrayList<Customer> customers = new ArrayList<>();
@@ -18,8 +20,9 @@ public class Menu {
     }
 
     public void startMenu(){
-        System.out.println("Are you a customer(0) or an employee(other numba)?");
-        if(input.nextInt() == 0){
+        System.out.println("Are you a customer(0), exit (1) or an employee(other number)?");
+        int choice = input.nextInt();
+        if(choice == 0){
             input.nextLine(); // Clear buffer
             System.out.println("Enter your Name: ");
             String name = input.nextLine();
@@ -31,6 +34,8 @@ public class Menu {
                     customerMenu(customer);
                 }
             }
+        } else if (choice == 1){
+            exit(0);
         } else {
             if(authentification()){
                 Maintenance maintenance = new Maintenance(vendingMachine);

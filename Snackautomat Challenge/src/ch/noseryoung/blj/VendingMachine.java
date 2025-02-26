@@ -103,6 +103,5 @@ public class VendingMachine {
             }
         } while (isInPayment);
     }
-
 }
 

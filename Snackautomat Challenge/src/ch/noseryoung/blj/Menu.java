@@ -1,23 +1,25 @@
 package ch.noseryoung.blj;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
-
+import javax.smartcardio.*;
 
 public class Menu {
-    ArrayList<Customer> customers = new ArrayList<>();
+
+    static ArrayList<Customer> customers = new ArrayList<>();
     VendingMachine vendingMachine;
     Scanner input = new Scanner(System.in);
 
-    public Menu(VendingMachine vendingMachine){
+    public Menu(VendingMachine vendingMachine) {
         this.vendingMachine = vendingMachine;
     }
 
     public void startMenu(){
-
         System.out.println("Are you a customer(0) or an employee(other numba)?");
         if(input.nextInt() == 0){
+            input.nextLine(); // Clear buffer
             System.out.println("Enter your Name: ");
             String name = input.nextLine();
             if(!isAlreadyCustomer(name)){
@@ -141,7 +143,6 @@ public class Menu {
         return hexString.toString().trim();
     }
 
-
     public void customerMenu(Customer customer){
         Scanner input = new Scanner(System.in);
         System.out.println("What product do you want to buy?");
@@ -155,6 +156,7 @@ public class Menu {
             }
         }
     }
+
     public boolean isAlreadyCustomer(String name) {
         for(Customer customer : customers){
             if(Objects.equals(customer.getName(), name)){

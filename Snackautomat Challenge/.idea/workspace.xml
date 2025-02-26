@@ -15,6 +15,7 @@
       <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/UI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java" afterDir="false" />
     </list>
+
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -44,6 +45,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Application.JFrameUserInputField.executor&quot;: &quot;Run&quot;,
@@ -58,8 +60,14 @@
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\work\Git\SnackautomatChallange\Snackautomat Challenge\res\products" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Vending Machine" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="ch.noseryoung.blj.Main" />

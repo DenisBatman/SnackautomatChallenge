@@ -7,8 +7,13 @@ import java.util.Scanner;
 import javax.smartcardio.*;
 
 public class Menu {
-    ArrayList<Customer> customers = new ArrayList<>();
+    static ArrayList<Customer> customers = new ArrayList<>();
+    VendingMachine vendingMachine;
     Scanner input = new Scanner(System.in);
+
+    public Menu(VendingMachine vendingMachine) {
+        this.vendingMachine = vendingMachine;
+    }
 
     public void startMenu(){
         System.out.println("Are you a customer(0) or an employee(other numba)?");
@@ -64,7 +69,6 @@ public class Menu {
 
             System.out.println("Detected Card UID: " + uidString);
 
-
             if (isAdminCard(uidString)) {
                 System.out.println("Authentication successful. Access granted.");
                 return true;
@@ -80,16 +84,11 @@ public class Menu {
     }
 
     private boolean isAdminCard(String uid) {
-<<<<<<< Updated upstream
         // List of admin NFC card UIDs
-        List<String> adminUIDs = List.of("04 A1 B2 C3 D4", "AB CD EF 12 34");
-=======
-
         List<String> adminUIDs = List.of(
                 "04 5F 88 1A 6D 74 80", // Nepomuk
                 "04 1F 23 4A 01 4F 80", // Denis
                 "04 26 8B AA B6 57 80" // Michel
-
         );
 
         System.out.println("Checking card UID against admin list:");
@@ -97,7 +96,6 @@ public class Menu {
             System.out.println("- " + adminUid);
         }
 
->>>>>>> Stashed changes
         return adminUIDs.contains(uid);
     }
 
@@ -111,7 +109,15 @@ public class Menu {
 
     public void customerMenu(Customer customer){
         System.out.println("What product do you want to buy?");
-        // Display available products
+        for(ProductSort productSort : vendingMachine.productSorts){
+            System.out.println(productSort.getName());
+        }
+        String productName = input.nextLine();
+        for (ProductSort productSort : vendingMachine.productSorts){
+            if(Objects.equals(productSort.getName(), productName)){
+                // Product selection customer
+            }
+        }
     }
 
     public boolean isAlreadyCustomer(String name) {

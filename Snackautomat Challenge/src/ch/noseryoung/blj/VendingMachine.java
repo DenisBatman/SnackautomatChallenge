@@ -34,9 +34,8 @@ public class VendingMachine {
             if(Objects.equals(productSort.getName(), productName)){
                 if(customer.getCredit() >= productSort.getPrice() * amount && productSort.products.size() >= amount){
                     isInPayment(productName, customer, amount * productSort.getPrice(), amount);
-                }
-                else {
-                    System.out.println("Nicht genügend Credits");
+                } else {
+                    System.out.println("Not enough credits");
                 }
                 break;
             }
@@ -53,7 +52,7 @@ public class VendingMachine {
         double paidCredit = 0;
         double needToPay = price;
         do {
-            System.out.println("You need ");
+            //System.out.println("You need ");
             Coin coin = getCoin();
             switch (coin) {
                 case FIVE_CENTS:

@@ -80,8 +80,24 @@ public class Menu {
     }
 
     private boolean isAdminCard(String uid) {
+<<<<<<< Updated upstream
         // List of admin NFC card UIDs
         List<String> adminUIDs = List.of("04 A1 B2 C3 D4", "AB CD EF 12 34");
+=======
+
+        List<String> adminUIDs = List.of(
+                "04 5F 88 1A 6D 74 80", // Nepomuk
+                "04 1F 23 4A 01 4F 80", // Denis
+                "04 26 8B AA B6 57 80" // Michel
+
+        );
+
+        System.out.println("Checking card UID against admin list:");
+        for (String adminUid : adminUIDs) {
+            System.out.println("- " + adminUid);
+        }
+
+>>>>>>> Stashed changes
         return adminUIDs.contains(uid);
     }
 

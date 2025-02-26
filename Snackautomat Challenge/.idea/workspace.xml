@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75530912-d2e1-4a05-90c4-9594518a3188" name="Changes" comment="" />
+    <list default="true" id="75530912-d2e1-4a05-90c4-9594518a3188" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/ProductSort.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/ProductSort.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/UI.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,6 +59,15 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\work\Git\SnackautomatChallange\Snackautomat Challenge\res" />
     </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Vending Machine" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="ch.noseryoung.blj.Main" />
+      <module name="Snackautomat Challenge" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

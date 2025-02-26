@@ -3,6 +3,9 @@ package ch.noseryoung.blj;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.Objects;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class UI extends JPanel implements Runnable{
@@ -24,7 +27,19 @@ public class UI extends JPanel implements Runnable{
         addMouseListener(mouse);
     }
 
+    public BufferedImage getImage (String imagePath){
+        BufferedImage image = null;
+        try{
+            image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
+        } catch(IOException exception) {
+            exception.printStackTrace();
+        }
+        return image;
+    }
+
     public void draw(Graphics2D graphics2D) {
+        BufferedImage background = getImage("/VendingMachineBackground");
+        graphics2D.drawImage(background, 0, 0, 800,  800,null);
         int x = 20;
         int y = 20;
         for(ProductSort productSort : vendingMachine.productSorts){
@@ -33,7 +48,6 @@ public class UI extends JPanel implements Runnable{
 
         }
     }
-
 
     @Override
     public void run() {
@@ -60,7 +74,6 @@ public class UI extends JPanel implements Runnable{
     }
 
     private void update() {
-
     }
     public void launchApplication() {
         applicationThread = new Thread(this);
@@ -70,6 +83,8 @@ public class UI extends JPanel implements Runnable{
     public void paintComponent (Graphics graphics){
         super.paintComponent(graphics);
         Graphics2D graphics2D = (Graphics2D) graphics;
+
+        draw(graphics2D);
 
     }
 

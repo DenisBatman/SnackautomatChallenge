@@ -1,18 +1,24 @@
 package ch.noseryoung.blj;
 
+import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ProductSort {
     public BufferedImage image;
-    int MAX_AMOUNT_OF_PRODUCTS = 10;
+    public static final int MAX_AMOUNT_OF_PRODUCTS = 10;
     public ArrayList<Product> products;
     private final String name;
     private int numberOfProducts;
     private double price;
+
     public ProductSort(String name, double price){
         numberOfProducts = 0;
         this.name = name;
+        this.price = price;
+        this.numberOfProducts = 0;
         switch (name) {
             case "Cola":
                 //image = getImage("/products/cola");
@@ -38,6 +44,10 @@ public class ProductSort {
             }
         }
     }
+
+
+    public BufferedImage getImage() { return image; }
+
     public int getNumberOfProducts(){return numberOfProducts;}
     public void setNumberOfProducts(int numberOfProducts){this.numberOfProducts = numberOfProducts;}
     public String getName(){return name;}

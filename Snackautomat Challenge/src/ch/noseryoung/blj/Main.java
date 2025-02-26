@@ -38,8 +38,9 @@ public class Main {
         JFrame window = new JFrame("Vending Machine");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
+        VendingMachine vendingMachine = new VendingMachine();
 
-        UI userInterface = new UI();
+        UI userInterface = new UI(vendingMachine);
         window.add(userInterface);
         window.pack();
 

@@ -5,21 +5,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
-
+import javax.smartcardio.*;
 
 public class Menu {
+
     static ArrayList<Customer> customers = new ArrayList<>();
     VendingMachine vendingMachine;
     Scanner input = new Scanner(System.in);
 
-    public Menu(VendingMachine vendingMachine){
+    public Menu(VendingMachine vendingMachine) {
         this.vendingMachine = vendingMachine;
     }
 
     public void startMenu(){
-
         System.out.println("Are you a customer(0) or an employee(other numba)?");
         if(input.nextInt() == 0){
+            input.nextLine(); // Clear buffer
             System.out.println("Enter your Name: ");
             String name = input.nextLine();
             if(!isAlreadyCustomer(name)){
@@ -120,11 +121,11 @@ public class Menu {
     }
 
     private boolean isAdminCard(String uid) {
-
+        // List of admin NFC card UIDs - merged from both branches
         List<String> adminUIDs = List.of(
-                "04 A1 B2 C3 D4",
-                "AB CD EF 12 34",
-                "3B 81 80 01 80 80" // Nepomuk
+                "04 5F 88 1A 6D 74 80", // Nepomuk
+                "04 1F 23 4A 01 4F 80", // Denis
+                "04 26 8B AA B6 57 80", // Michel
         );
 
         System.out.println("Checking card UID against admin list:");
@@ -143,7 +144,6 @@ public class Menu {
         return hexString.toString().trim();
     }
 
-
     public void customerMenu(Customer customer){
         Scanner input = new Scanner(System.in);
         System.out.println("What product do you want to buy?");
@@ -157,6 +157,7 @@ public class Menu {
             }
         }
     }
+
     public boolean isAlreadyCustomer(String name) {
         for(Customer customer : customers){
             if(Objects.equals(customer.getName(), name)){

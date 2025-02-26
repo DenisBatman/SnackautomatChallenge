@@ -29,6 +29,7 @@ public class ProductSort {
     public void setNumberOfProducts(int numberOfProducts){this.numberOfProducts = numberOfProducts;}
     public String getName(){return name;}
     public double getPrice() {return price;}
+    public void setPrice(double price){this.price = price;}
 
 
     public void setPrice(double price) {

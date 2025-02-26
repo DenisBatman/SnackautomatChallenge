@@ -20,6 +20,7 @@ public class Maintenance {
         System.out.println("4. Exchange product");
         System.out.println("5. Delete product");
         System.out.println("6. Change credit of customer");
+        System.out.println("7. Exit");
         System.out.print("Your choice: ");
         int choice = input.nextInt();
         input.nextLine();
@@ -30,6 +31,10 @@ public class Maintenance {
             case 4 -> exchangeProduct();
             case 5 -> deleteProduct();
             case 6 -> changeCustomerCredit();
+            case 7 -> {
+                Menu menu = new Menu(vendingMachine);
+                menu.startMenu();
+            }
             default -> System.out.println("Invalid choice");
         }
 

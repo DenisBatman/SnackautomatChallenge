@@ -2,6 +2,7 @@ package ch.noseryoung.blj;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class VendingMachine {
     public ArrayList<ProductSort> productSorts;
@@ -13,10 +14,10 @@ public class VendingMachine {
     }
 
     public void fillEmptyMachine(){
-        productSorts.add(new ProductSort("COLA", 1.5));
-        productSorts.add(new ProductSort("SPRITE", 1.6));
-        productSorts.add(new ProductSort("SNICKERS", 2.5));
-        productSorts.add(new ProductSort("SANDWICH", 7.5));
+        productSorts.add(new ProductSort("Cola", 1.5));
+        productSorts.add(new ProductSort("Sprite", 1.6));
+        productSorts.add(new ProductSort("Snickers", 2.5));
+        productSorts.add(new ProductSort("Sandwich", 7.5));
     }
 
     public void buyProduct(String productName){
@@ -32,13 +33,9 @@ public class VendingMachine {
         for (ProductSort productSort : productSorts){
             if(Objects.equals(productSort.getName(), productName)){
                 if(customer.getCredit() >= productSort.getPrice() * amount && productSort.products.size() >= amount){
-
-                    for(int i = 0; amount > i; i++){
-                        buyProduct(productName);
-                    }
-                }
-                else {
-                    System.out.println("Nicht genügend Credits");
+                    isInPayment(productName, customer, amount * productSort.getPrice(), amount);
+                } else {
+                    System.out.println("Not enough credits");
                 }
                 break;
             }
@@ -48,14 +45,14 @@ public class VendingMachine {
 
 
 
-    public void isInPayment(Customer customer, double price)
+    public void isInPayment(String productName, Customer customer, double price, int amount)
     {
         boolean isInPayment = true;
         double oldCredit = customer.getCredit();
         double paidCredit = 0;
         double needToPay = price;
         do {
-            System.out.println("You need ");
+            //System.out.println("You need ");
             Coin coin = getCoin();
             switch (coin) {
                 case FIVE_CENTS:
@@ -105,6 +102,16 @@ public class VendingMachine {
                 isInPayment = false;
             }
         } while (isInPayment);
+        System.out.println("Confirm purchase? (y/n)");
+        Scanner input = new Scanner(System.in);
+        String confirm = input.nextLine().trim().toLowerCase();
+        if(!confirm.equals("y") || !confirm.equals("yes")) {
+            customer.setCredit(oldCredit);
+        } else {
+            for(int i = 0; amount > i; i++){
+                buyProduct(productName);
+            }
+        }
     }
 
     //temporary later need to be with ui

@@ -39,7 +39,7 @@ public class ProductSort {
 
     public void fillStock(){
         if(products.size() < MAX_AMOUNT_OF_PRODUCTS * 0.3){
-            for(int i = products.size(); MAX_AMOUNT_OF_PRODUCTS >= i; i++){
+            for(int i = products.size(); i < MAX_AMOUNT_OF_PRODUCTS; i++){
                 products.add(new Product(name));
             }
         }
@@ -53,5 +53,4 @@ public class ProductSort {
     public String getName(){return name;}
     public double getPrice() {return price;}
     public void setPrice(double price){this.price = price;}
-
 }

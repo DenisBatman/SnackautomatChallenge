@@ -146,16 +146,132 @@ public class Menu {
 
     public void customerMenu(Customer customer){
         Scanner input = new Scanner(System.in);
-        System.out.println("What product do you want to buy?");
-        for(ProductSort productSort : vendingMachine.productSorts){
-            System.out.println(productSort.getName());
-        }
-        String productName = input.nextLine();
-        for (ProductSort productSort : vendingMachine.productSorts){
-            if(Objects.equals(productSort.getName(), productName)){
-                // Product selection customer
+        boolean continueShoppingFlag = true;
+
+        while(continueShoppingFlag) {
+            System.out.println("\n----- CUSTOMER MENU -----");
+            System.out.println("Your current credit: $" + String.format("%.2f", customer.getCredit()));
+            System.out.println("\nAvailable products:");
+
+            if(vendingMachine.productSorts.isEmpty()) {
+                System.out.println("No products available. Please contact an employee.");
+                return;
+            }
+
+            // Display products
+            int productCounter = 1;
+            for(ProductSort productSort : vendingMachine.productSorts){
+                System.out.printf("%d. %s - $%.2f (Available: %d)\n",
+                        productCounter++,
+                        productSort.getName(),
+                        productSort.getPrice(),
+                        productSort.products.size());
+            }
+
+            System.out.println("\nSelect a product by number (or 0 to exit): ");
+            int productChoice;
+            try {
+                productChoice = input.nextInt();
+                input.nextLine(); // Clear buffer
+            } catch(Exception e) {
+                System.out.println("Invalid selection. Please enter a number.");
+                input.nextLine(); // Clear buffer
+                continue;
+            }
+
+            // Exit
+            if(productChoice == 0) {
+                continueShoppingFlag = false;
+                continue;
+            }
+
+            // Validate
+            if(productChoice < 1 || productChoice > vendingMachine.productSorts.size()) {
+                System.out.println("Invalid product number. Please try again.");
+                continue;
+            }
+
+            // Get the selected product
+            ProductSort selectedProduct = vendingMachine.productSorts.get(productChoice - 1);
+
+            //if product is available
+            if(selectedProduct.products.isEmpty()) {
+                System.out.println("Sorry, " + selectedProduct.getName() + " is out of stock.");
+                continue;
+            }
+
+            //quantity
+            System.out.println("How many " + selectedProduct.getName() + " would you like to purchase?");
+            int quantity;
+            try {
+                quantity = input.nextInt();
+                input.nextLine(); // Clear buffer
+            } catch(Exception e) {
+                System.out.println("Invalid quantity. Please enter a number.");
+                input.nextLine(); // Clear buffer
+                continue;
+            }
+
+            // Validate
+            if(quantity <= 0) {
+                System.out.println("Please enter a positive quantity.");
+                continue;
+            }
+
+            // Check stock
+            if(quantity > selectedProduct.products.size()) {
+                System.out.println("Sorry, only " + selectedProduct.products.size() +
+                        " units available. Please select a smaller quantity.");
+                continue;
+            }
+
+            // Calculate total price
+            double totalPrice = selectedProduct.getPrice() * quantity;
+
+            // customer has enough credit
+            if(customer.getCredit() < totalPrice) {
+                System.out.println("Insufficient credit. You need $" +
+                        String.format("%.2f", totalPrice) + " but you only have $" +
+                        String.format("%.2f", customer.getCredit()));
+
+                System.out.println("Would you like to add payment? (y/n)");
+                String addPayment = input.nextLine().trim().toLowerCase();
+
+                if(addPayment.equals("y") || addPayment.equals("yes")) {
+                    vendingMachine.isInPayment(customer, totalPrice);
+                }
+                continue;
+            }
+
+            // Process transaction
+            System.out.println("Purchasing " + quantity + " " + selectedProduct.getName() +
+                    " for $" + String.format("%.2f", totalPrice));
+
+            // Confirm purchase
+            System.out.println("Confirm purchase? (y/n)");
+            String confirm = input.nextLine().trim().toLowerCase();
+
+            if(confirm.equals("y") || confirm.equals("yes")) {
+                // Update customer credit
+                customer.setCredit(customer.getCredit() - totalPrice);
+
+                // Process the purchase
+                vendingMachine.startTransaction(selectedProduct.getName(), quantity, customer);
+
+                System.out.println("Thank you for your purchase!");
+                System.out.println("Your remaining credit: $" + String.format("%.2f", customer.getCredit()));
+
+                // Ask if customer wants to continue shopping
+                System.out.println("Would you like to make another purchase? (y/n)");
+                String continueShopping = input.nextLine().trim().toLowerCase();
+
+                if(!continueShopping.equals("y") && !continueShopping.equals("yes")) {
+                    continueShoppingFlag = false;
+                }
             }
         }
+
+        System.out.println("Thank you for using our vending machine!");
     }
 
     public boolean isAlreadyCustomer(String name) {

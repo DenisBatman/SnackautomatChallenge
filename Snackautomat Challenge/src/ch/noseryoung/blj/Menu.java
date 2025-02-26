@@ -1,12 +1,14 @@
 package ch.noseryoung.blj;
 
+import javax.smartcardio.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
 
 public class Menu {
-    ArrayList<Customer> customers = new ArrayList<>();
+    static ArrayList<Customer> customers = new ArrayList<>();
     VendingMachine vendingMachine;
     Scanner input = new Scanner(System.in);
 

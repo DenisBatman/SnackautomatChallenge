@@ -7,7 +7,7 @@ public class ProductSort {
     public ArrayList<Product> products;
     private final String name;
     private int numberOfProducts;
-    private final double price;
+    private double price;
     public ProductSort(String name, double price){
         numberOfProducts = 0;
         this.name = name;
@@ -31,5 +31,7 @@ public class ProductSort {
     public double getPrice() {return price;}
 
 
-
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }

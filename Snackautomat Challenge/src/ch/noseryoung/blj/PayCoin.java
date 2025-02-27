@@ -14,9 +14,9 @@ public class PayCoin extends JFrame {
     private final JButton FIVE_DOLLARS;
     private final JButton CANCEL;
 
-    public PayCoin() {
+    public PayCoin(double oldCredit, double paidCredit, double needToPay) {
         setTitle("Payment");
-        setSize(500, 600);
+        setSize(300, 200);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setLayout(new FlowLayout());
         FIVE_CENTS = new JButton("-.05");
@@ -27,9 +27,6 @@ public class PayCoin extends JFrame {
         TWO_DOLLARS = new JButton("2.-");
         FIVE_DOLLARS = new JButton("5.-");
         CANCEL = new JButton("Cancel");
-    }
-
-    public Coin paymentInterface(double oldCredit, double paidCredit, double needToPay){
         JTextField oldCreditText = new JTextField("Your old credit: " + oldCredit);
         JTextField alreadyPaid = new JTextField("You already paid: " + (double)Math.round(paidCredit*100)/100);
         JTextField currentCredit = new JTextField("You current credit: " + (double)Math.round((oldCredit - paidCredit)*100)/100);
@@ -71,22 +68,27 @@ public class PayCoin extends JFrame {
 
         setLocationRelativeTo(null);
         setVisible(true);
-        while(true){
-            AtomicReference<Coin> coin = new AtomicReference<>();
-            FIVE_CENTS.addActionListener(_ -> coin.set(Coin.FIVE_CENTS));
-            TEN_CENTS.addActionListener(_ -> coin.set(Coin.TEN_CENTS));
-            TWENTY_CENTS.addActionListener(_ -> coin.set(Coin.TWENTY_CENTS));
-            FIFTY_CENTS.addActionListener(_ -> coin.set(Coin.FIFTY_CENTS));
-            ONE_DOLLAR.addActionListener(_ -> coin.set(Coin.ONE_DOLLAR));
-            TWO_DOLLARS.addActionListener(_ -> coin.set(Coin.TWO_DOLLARS));
-            FIVE_DOLLARS.addActionListener(_ -> coin.set(Coin.FIVE_DOLLARS));
-            CANCEL.addActionListener(_ -> coin.set(Coin.CANCEL));
+    }
 
-            if(coin.get() != null){
-                setVisible(false);
-                return coin.get();
-            }
-        }
+    public Coin paymentInterface(){
+        AtomicReference<Coin> coin = new AtomicReference<>();
+        FIVE_CENTS.addActionListener(_ -> coin.set(Coin.FIVE_CENTS));
+        TEN_CENTS.addActionListener(_ -> coin.set(Coin.TEN_CENTS));
+        TWENTY_CENTS.addActionListener(_ -> coin.set(Coin.TWENTY_CENTS));
+        FIFTY_CENTS.addActionListener(_ -> coin.set(Coin.FIFTY_CENTS));
+        ONE_DOLLAR.addActionListener(_ -> {
+            coin.set(Coin.ONE_DOLLAR);
+            System.out.println("dollar added");
+        });
+        TWO_DOLLARS.addActionListener(_ -> coin.set(Coin.TWO_DOLLARS));
+        FIVE_DOLLARS.addActionListener(_ -> coin.set(Coin.FIVE_DOLLARS));
+        CANCEL.addActionListener(_ -> coin.set(Coin.CANCEL));
+
+        while(coin.get() == null);
+        setVisible(false);
+        dispose();
+        return coin.get();
+
     }
 
 }

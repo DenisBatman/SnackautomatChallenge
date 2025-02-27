@@ -13,12 +13,16 @@ public class VendingMachine {
     }
 
     public void fillEmptyMachine(){
+        productSorts = new ArrayList<>();
         productSorts.add(new ProductSort("Chips", 3.5));
         productSorts.add(new ProductSort("Fanta", 1.6));
         productSorts.add(new ProductSort("M&Ms", 2.5));
         productSorts.add(new ProductSort("Mars", 2.5));
         productSorts.add(new ProductSort("Prime", 3.5));
         productSorts.add(new ProductSort("Twix", 2.5));
+        productSorts.add(new ProductSort("Haribo", 2.0));
+        productSorts.add(new ProductSort("Takis", 3.0));
+        productSorts.add(new ProductSort("Water", 1.5));
     }
 
     public void buyProduct(String productName){
@@ -51,7 +55,7 @@ public class VendingMachine {
         double paidCredit = 0;
         double needToPay = price;
         do {
-            Coin coin = new PayCoin().paymentInterface(oldCredit, paidCredit, needToPay);
+            Coin coin = new PayCoin(oldCredit, paidCredit, needToPay).paymentInterface();
             switch (coin) {
                 case FIVE_CENTS:
                     customer.setCredit((double) Math.round((customer.getCredit() - 0.05) * 100) /100);
@@ -112,18 +116,17 @@ public class VendingMachine {
             }
             if(paidCredit >= price){
                 isInPayment = false;
+                String confirm = new JFrameUserInputField("Confirm purchase? (y/n)").getString().trim().toLowerCase();
+                if(!confirm.equals("y") && !confirm.equals("yes")) {
+                    customer.setCredit(oldCredit);
+                } else {
+                    customer.setCredit(oldCredit - price);
+                    for(int i = 0; amount > i; i++){
+                        buyProduct(productName);
+                    }
+                }
             }
         } while (isInPayment);
-        String confirm = new JFrameUserInputField("Confirm purchase? (y/n)").getString().trim().toLowerCase();
-        if(!confirm.equals("y") && !confirm.equals("yes")) {
-            customer.setCredit(oldCredit);
-        } else {
-            customer.setCredit(oldCredit - price);
-            for(int i = 0; amount > i; i++){
-                buyProduct(productName);
-            }
-        }
     }
-
 }
 

@@ -99,12 +99,17 @@ public void run() {
                 selectedProduct = null;
                 int amount = new JFrameUserInputField("How much " + vendingMachine.currentProduct.getName()
                         + " do you want?").getInteger();
-                System.out.println(amount);
-                if(amount <= vendingMachine.currentProduct.products.size()){
-                    double totalPrice = vendingMachine.currentProduct.getPrice() * amount;
-                    payment(totalPrice, amount);
-                    vendingMachine.currentProduct = null;
+                if(amount > 0){
+                    if(amount <= vendingMachine.currentProduct.products.size()){
+                        double totalPrice = vendingMachine.currentProduct.getPrice() * amount;
+                        payment(totalPrice, amount);
+                    } else {
+                        new ErrorMessage("We don't have the amount of this product.");
+                    }
+                } else {
+                    new ErrorMessage("Not a valid amount");
                 }
+                vendingMachine.currentProduct = null;
             }
         }
     }
@@ -112,6 +117,8 @@ public void run() {
     private void payment(double totalPrice, int amount) {
         if(customer.getCredit() >= totalPrice){
             vendingMachine.isInPayment(vendingMachine.currentProduct.getName(), customer, totalPrice, amount);
+        } else {
+            new ErrorMessage("You don't have enough money.");
         }
     }
 
@@ -133,7 +140,7 @@ public void run() {
             counter++;
             if(counter % 3 == 0){
                 x = 250;
-                y += 90;
+                y += 100;
             } else {
                 int MARGIN = 100;
                 x += MARGIN;
@@ -150,7 +157,4 @@ public void run() {
         }
 
     }
-
-
-
 }

@@ -103,8 +103,8 @@ public void run() {
                 if(amount <= vendingMachine.currentProduct.products.size()){
                     double totalPrice = vendingMachine.currentProduct.getPrice() * amount;
                     payment(totalPrice, amount);
-                    vendingMachine.currentProduct = null;
                 }
+                vendingMachine.currentProduct = null;
             }
         }
     }
@@ -133,7 +133,7 @@ public void run() {
             counter++;
             if(counter % 3 == 0){
                 x = 250;
-                y += 90;
+                y += 100;
             } else {
                 int MARGIN = 100;
                 x += MARGIN;
@@ -150,7 +150,4 @@ public void run() {
         }
 
     }
-
-
-
 }

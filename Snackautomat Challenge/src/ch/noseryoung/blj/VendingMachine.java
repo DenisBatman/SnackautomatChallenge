@@ -13,6 +13,7 @@ public class VendingMachine {
     }
 
     public void fillEmptyMachine(){
+        productSorts = new ArrayList<>();
         productSorts.add(new ProductSort("Chips", 3.5));
         productSorts.add(new ProductSort("Fanta", 1.6));
         productSorts.add(new ProductSort("M&Ms", 2.5));
@@ -115,18 +116,17 @@ public class VendingMachine {
             }
             if(paidCredit >= price){
                 isInPayment = false;
+                String confirm = new JFrameUserInputField("Confirm purchase? (y/n)").getString().trim().toLowerCase();
+                if(!confirm.equals("y") && !confirm.equals("yes")) {
+                    customer.setCredit(oldCredit);
+                } else {
+                    customer.setCredit(oldCredit - price);
+                    for(int i = 0; amount > i; i++){
+                        buyProduct(productName);
+                    }
+                }
             }
         } while (isInPayment);
-        String confirm = new JFrameUserInputField("Confirm purchase? (y/n)").getString().trim().toLowerCase();
-        if(!confirm.equals("y") && !confirm.equals("yes")) {
-            customer.setCredit(oldCredit);
-        } else {
-            customer.setCredit(oldCredit - price);
-            for(int i = 0; amount > i; i++){
-                buyProduct(productName);
-            }
-        }
     }
-
 }
 

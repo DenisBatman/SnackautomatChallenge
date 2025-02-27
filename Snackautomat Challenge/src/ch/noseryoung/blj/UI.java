@@ -103,6 +103,8 @@ public void run() {
                 if(amount <= vendingMachine.currentProduct.products.size()){
                     double totalPrice = vendingMachine.currentProduct.getPrice() * amount;
                     payment(totalPrice, amount);
+                } else {
+                    new ErrorMessage("We don't have the amount of this product.");
                 }
                 vendingMachine.currentProduct = null;
             }
@@ -112,6 +114,8 @@ public void run() {
     private void payment(double totalPrice, int amount) {
         if(customer.getCredit() >= totalPrice){
             vendingMachine.isInPayment(vendingMachine.currentProduct.getName(), customer, totalPrice, amount);
+        } else {
+            new ErrorMessage("You don't have enough money.");
         }
     }
 

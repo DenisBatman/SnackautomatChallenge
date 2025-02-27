@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Objects;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.SwingUtilities;
 
 public class UI extends JPanel implements Runnable {
     public  final int WIDTH = 1100;
@@ -96,6 +97,13 @@ public void run() {
                         (mouse.y >= 450 && mouse.y <= 450 + 100)){
                     switchCustomer(new JFrameUserInputField("Type in your name").getString());
                 }
+                if((mouse.x >= 850 && mouse.x <= 850 + 150) &&
+                        (mouse.y >= 575 && mouse.y <= 575 + 50)){
+                    applicationThread = null;
+                    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                    frame.dispose();
+                    new Thread(() -> Main.launchCLI(vendingMachine)).start();
+                }
             }
         }
         if(!mouse.isPressed){
@@ -170,6 +178,12 @@ public void run() {
         graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 45));
         graphics2D.setColor(Color.BLACK);
         graphics2D.drawString("Switch user", 730, 510);
+        
+        graphics2D.setColor(Color.WHITE);
+        graphics2D.fillRect(850, 575, 150, 50);
+        graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 22));
+        graphics2D.setColor(Color.BLACK);
+        graphics2D.drawString("Switch to CLI", 865, 610);
         // status messages
         graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         graphics2D.setColor(Color.WHITE);

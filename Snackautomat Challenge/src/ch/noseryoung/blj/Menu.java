@@ -20,7 +20,7 @@ public class Menu {
     }
 
     public void startMenu(){
-        System.out.println("Are you a exit (0), customer (1) or an employee(other number)?");
+        System.out.println("Are you a exit (0), customer (1), employee (2) or want to switch to GUI (3)?");
         int choice = input.nextInt();
         if(choice == 0){
             exit(0);
@@ -36,6 +36,9 @@ public class Menu {
                     customerMenu(customer);
                 }
             }
+        } else if (choice == 3){
+            input.close();
+            Main.launchGUI(vendingMachine);
         } else {
             if(authentification()){
                 Maintenance maintenance = new Maintenance(vendingMachine);

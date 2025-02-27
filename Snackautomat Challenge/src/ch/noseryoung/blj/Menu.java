@@ -130,7 +130,7 @@ public class Menu {
 
         System.out.println("Checking card UID against admin list:");
         for (String adminUid : adminUIDs) {
-            System.out.println("- " + adminUid);
+            System.out.println("- hidden -");
         }
 
         return adminUIDs.contains(uid);

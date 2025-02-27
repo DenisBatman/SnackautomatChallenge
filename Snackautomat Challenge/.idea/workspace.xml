@@ -5,10 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="746bc331-9f0f-48a4-a474-fbf177709a6b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/PayCoin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/Coin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/Coin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/JFrameUserInputField.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/JFrameUserInputField.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/PayCoin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/PayCoin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/UI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java" afterDir="false" />
     </list>
@@ -50,7 +48,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
-    "Application.Vending Machine.executor": "Debug",
+    "Application.Vending Machine.executor": "Run",
     "git-widget-placeholder": "feature/user-interface",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
@@ -92,7 +90,7 @@
       <updated>1740123063136</updated>
       <workItem from="1740124611968" duration="7891000" />
       <workItem from="1740123064588" duration="4130000" />
-      <workItem from="1740640409609" duration="4645000" />
+      <workItem from="1740640409609" duration="7369000" />
     </task>
     <servers />
   </component>
@@ -115,27 +113,22 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java</url>
-          <line>92</line>
+          <line>97</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ch/noseryoung/blj/PayCoin.java</url>
-          <line>141</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java</url>
-          <line>60</line>
+          <line>54</line>
           <option name="timeStamp" value="10" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java</url>
-          <line>111</line>
+          <line>117</line>
           <option name="timeStamp" value="11" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java</url>
-          <line>112</line>
+          <line>118</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>

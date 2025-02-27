@@ -4,7 +4,6 @@ package ch.noseryoung.blj;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Objects;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,9 +11,6 @@ import javax.swing.*;
 public class UI extends JPanel implements Runnable {
     public  final int WIDTH = 1100;
     public  final int HEIGHT = 800;
-    private final int MARGIN = 100;
-    private final int TOP_LEFT_X = 250;
-    private final int TOP_LEFT_Y = 160;
     private ProductSort selectedProduct;
     Customer customer;
 
@@ -47,7 +43,7 @@ public class UI extends JPanel implements Runnable {
     public BufferedImage getImage (String imagePath){
         BufferedImage image = null;
         try{
-            image = ImageIO.read(getClass().getResourceAsStream(imagePath + ".png"));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream(imagePath + ".png")));
         } catch(IOException exception) {
             exception.printStackTrace();
         }
@@ -114,7 +110,9 @@ public void run() {
     }
 
     private void payment(double totalPrice, int amount) {
-        vendingMachine.isInPayment(vendingMachine.currentProduct.getName(), customer, totalPrice, amount);
+        if(customer.getCredit() >= totalPrice){
+            vendingMachine.isInPayment(vendingMachine.currentProduct.getName(), customer, totalPrice, amount);
+        }
     }
 
     public void launchApplication() {
@@ -137,6 +135,7 @@ public void run() {
                 x = 250;
                 y += 90;
             } else {
+                int MARGIN = 100;
                 x += MARGIN;
             }
         }

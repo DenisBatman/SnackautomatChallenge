@@ -2,17 +2,14 @@ package ch.noseryoung.blj;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class VendingMachine {
     public ArrayList<ProductSort> productSorts;
-    private final int maxAmountOfProducts = 10;
-    int vendingMachineCredits;
     boolean isInPayment = false;
     ProductSort currentProduct;
 
     public VendingMachine() {
-        productSorts = new ArrayList<ProductSort>();
+        productSorts = new ArrayList<>();
     }
 
     public void fillEmptyMachine(){
@@ -47,8 +44,6 @@ public class VendingMachine {
 
     }
 
-
-
     public void isInPayment(String productName, Customer customer, double price, int amount)
     {
         isInPayment = true;
@@ -56,43 +51,54 @@ public class VendingMachine {
         double paidCredit = 0;
         double needToPay = price;
         do {
-            //System.out.println("You need ");
             Coin coin = new PayCoin().paymentInterface(oldCredit, paidCredit, needToPay);
             switch (coin) {
                 case FIVE_CENTS:
-                    customer.setCredit(customer.getCredit() - 0.05);
+                    customer.setCredit((double) Math.round((customer.getCredit() - 0.05) * 100) /100);
                     needToPay -= 0.05;
                     paidCredit += 0.05;
                     break;
                 case TEN_CENTS:
-                    customer.setCredit(customer.getCredit() - 0.1);
-                    needToPay -= 0.1;
-                    paidCredit += 0.1;
+                    if (customer.getCredit() >= 0.1) {
+                        customer.setCredit((double) Math.round((customer.getCredit() - 0.1) * 100) / 100);
+                        needToPay -= 0.1;
+                        paidCredit += 0.1;
+                    }
                     break;
                 case TWENTY_CENTS:
-                    customer.setCredit(customer.getCredit() - 0.2);
-                    needToPay -= 0.2;
-                    paidCredit += 0.2;
+                    if (customer.getCredit() >= 0.2) {
+                        customer.setCredit((double) Math.round((customer.getCredit() - 0.2) * 100) / 100);
+                        needToPay -= 0.2;
+                        paidCredit += 0.2;
+                    }
                     break;
                 case FIFTY_CENTS:
-                    customer.setCredit(customer.getCredit() - 0.5);
-                    needToPay -= 0.5;
-                    paidCredit += 0.5;
+                    if (customer.getCredit() >= 0.5) {
+                        customer.setCredit((double) Math.round((customer.getCredit() - 0.5) * 100) / 100);
+                        needToPay -= 0.5;
+                        paidCredit += 0.5;
+                    }
                     break;
                 case ONE_DOLLAR:
-                    customer.setCredit(customer.getCredit() - 1);
-                    needToPay -= 1;
-                    paidCredit += 1;
+                    if (customer.getCredit() >= 1) {
+                        customer.setCredit((double) Math.round((customer.getCredit() - 1) * 100) / 100);
+                        needToPay -= 1;
+                        paidCredit += 1;
+                    }
                     break;
                 case TWO_DOLLARS:
-                    customer.setCredit(customer.getCredit() - 2);
-                    needToPay -= 2;
-                    paidCredit += 2;
+                    if (customer.getCredit() >= 2) {
+                        customer.setCredit((double) Math.round((customer.getCredit() - 2) * 100) / 100);
+                        needToPay -= 2;
+                        paidCredit += 2;
+                    }
                     break;
                 case FIVE_DOLLARS:
-                    customer.setCredit(customer.getCredit() - 5);
-                    needToPay -= 5;
-                    paidCredit += 5;
+                    if (customer.getCredit() >= 5) {
+                        customer.setCredit((double) Math.round((customer.getCredit() - 5) * 100) / 100);
+                        needToPay -= 5;
+                        paidCredit += 5;
+                    }
                     break;
                 case CANCEL:
                     customer.setCredit(oldCredit);
@@ -112,15 +118,11 @@ public class VendingMachine {
         if(!confirm.equals("y") && !confirm.equals("yes")) {
             customer.setCredit(oldCredit);
         } else {
+            customer.setCredit(oldCredit - price);
             for(int i = 0; amount > i; i++){
                 buyProduct(productName);
             }
         }
-    }
-
-    //temporary later need to be with ui
-    public Coin getCoin(){
-        return Coin.ONE_DOLLAR;
     }
 
 }

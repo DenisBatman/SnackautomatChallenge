@@ -59,7 +59,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "Application.Vending Machine.executor": "Run",
-    "git-widget-placeholder": "feature/user-interface",
+    "git-widget-placeholder": "feature/coin-bugfix",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",

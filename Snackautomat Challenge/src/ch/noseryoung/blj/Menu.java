@@ -238,14 +238,6 @@ public class Menu {
                 System.out.println("Insufficient credit. You need $" +
                         String.format("%.2f", totalPrice) + " but you only have $" +
                         String.format("%.2f", customer.getCredit()));
-                /*
-                System.out.println("Would you like to add payment? (y/n)");
-                String addPayment = input.nextLine().trim().toLowerCase();
-
-                if(addPayment.equals("y") || addPayment.equals("yes")) {
-                    vendingMachine.isInPayment(customer, totalPrice);
-                }
-                */
                 continue;
             }
 
@@ -258,9 +250,6 @@ public class Menu {
             String confirm = input.nextLine().trim().toLowerCase();
 
             if(confirm.equals("y") || confirm.equals("yes")) {
-                // Update customer credit
-                customer.setCredit(customer.getCredit() - totalPrice);
-
                 // Process the purchase
                 vendingMachine.startTransaction(selectedProduct.getName(), quantity, customer);
 

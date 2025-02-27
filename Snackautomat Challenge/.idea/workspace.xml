@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="746bc331-9f0f-48a4-a474-fbf177709a6b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/ErrorMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/ErrorMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/ErrorMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/UI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/UI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +91,7 @@
       <workItem from="1740124611968" duration="7891000" />
       <workItem from="1740123064588" duration="4130000" />
       <workItem from="1740640409609" duration="8713000" />
-      <workItem from="1740649659812" duration="3176000" />
+      <workItem from="1740649659812" duration="5881000" />
     </task>
     <servers />
   </component>

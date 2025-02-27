@@ -99,12 +99,15 @@ public void run() {
                 selectedProduct = null;
                 int amount = new JFrameUserInputField("How much " + vendingMachine.currentProduct.getName()
                         + " do you want?").getInteger();
-                System.out.println(amount);
-                if(amount <= vendingMachine.currentProduct.products.size()){
-                    double totalPrice = vendingMachine.currentProduct.getPrice() * amount;
-                    payment(totalPrice, amount);
+                if(amount > 0){
+                    if(amount <= vendingMachine.currentProduct.products.size()){
+                        double totalPrice = vendingMachine.currentProduct.getPrice() * amount;
+                        payment(totalPrice, amount);
+                    } else {
+                        new ErrorMessage("We don't have the amount of this product.");
+                    }
                 } else {
-                    new ErrorMessage("We don't have the amount of this product.");
+                    new ErrorMessage("Not a valid amount");
                 }
                 vendingMachine.currentProduct = null;
             }

@@ -7,7 +7,7 @@ public class ErrorMessage extends JFrame {
         JFrame error = new JFrame();
         JOptionPane.showMessageDialog(error,
                 text,
-                "ERROR",
+                "ERROR MESSAGE",
                 JOptionPane.WARNING_MESSAGE);
     }
 }

@@ -103,7 +103,10 @@ public void run() {
                 if(amount <= vendingMachine.currentProduct.products.size()){
                     double totalPrice = vendingMachine.currentProduct.getPrice() * amount;
                     payment(totalPrice, amount);
+                }else {
                     vendingMachine.currentProduct = null;
+                    System.out.println("You dont have that many Credits");
+                    JOptionPane.showMessageDialog(this, "You do not have enough credits for " + amount + " items.", "Insufficient Credits", JOptionPane.WARNING_MESSAGE);
                 }
             }
         }

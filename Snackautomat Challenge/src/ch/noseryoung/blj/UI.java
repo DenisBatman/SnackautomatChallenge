@@ -175,19 +175,20 @@ public void run() {
         //switch user
         graphics2D.setColor(Color.WHITE);
         graphics2D.fillRect(700, 450, 300, 100);
-        graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 45));
+        graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 40));
         graphics2D.setColor(Color.BLACK);
-        graphics2D.drawString("Switch user", 730, 510);
+        graphics2D.drawString("Switch user", 740, 510);
         
         graphics2D.setColor(Color.WHITE);
         graphics2D.fillRect(850, 575, 150, 50);
-        graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 22));
         graphics2D.setColor(Color.BLACK);
-        graphics2D.drawString("Switch to CLI", 865, 610);
+        graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 20));
+        graphics2D.drawString("Switch to CLI", 864, 607);
         // status messages
-        graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+        graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 40));
         graphics2D.setColor(Color.WHITE);
-        graphics2D.drawString("Your credit: " + customer.getCredit(), 700, 100);
+        graphics2D.drawString("Your credit: " + String.format("%.2f",
+                (double)Math.round(100 * customer.getCredit())/100), 700, 100);
         graphics2D.drawString(customer.name, 700, 700);
         if(vendingMachine.currentProduct == null){
             graphics2D.drawString("Select a product!", 700, 400);

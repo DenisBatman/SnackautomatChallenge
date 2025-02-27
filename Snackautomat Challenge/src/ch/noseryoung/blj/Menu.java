@@ -20,9 +20,11 @@ public class Menu {
     }
 
     public void startMenu(){
-        System.out.println("Are you a customer(0), exit (1) or an employee(other number)?");
+        System.out.println("Are you a exit (0), customer (1) or an employee(other number)?");
         int choice = input.nextInt();
         if(choice == 0){
+            exit(0);
+        } else if (choice == 1){
             input.nextLine(); // Clear buffer
             System.out.println("Enter your Name: ");
             String name = input.nextLine();
@@ -34,8 +36,6 @@ public class Menu {
                     customerMenu(customer);
                 }
             }
-        } else if (choice == 1){
-            exit(0);
         } else {
             if(authentification()){
                 Maintenance maintenance = new Maintenance(vendingMachine);

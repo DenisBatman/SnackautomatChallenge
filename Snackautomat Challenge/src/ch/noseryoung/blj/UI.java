@@ -27,14 +27,14 @@ public class UI extends JPanel implements Runnable {
         addMouseMotionListener(mouse);
         addMouseListener(mouse);
         String name = new JFrameUserInputField("What is your name?").getString();
-        boolean changedName = false;
+        boolean isNewCustomer = true;
         for (Customer customer : Menu.customers){
             if(Objects.equals(customer.getName(), name)){
                 this.customer = customer;
-                changedName = true;
+                isNewCustomer = false;
             }
         }
-        if(!changedName){
+        if(isNewCustomer){
             customer = new Customer(name);
             Menu.customers.add(customer);
         }
@@ -91,6 +91,11 @@ public void run() {
                         break;
                     }
                 }
+                // 700 is x position of switch user rectangle
+                if((mouse.x >= 700 && mouse.x <= 700 + 300) &&
+                        (mouse.y >= 450 && mouse.y <= 450 + 100)){
+                    switchCustomer(new JFrameUserInputField("Type in your name").getString());
+                }
             }
         }
         if(!mouse.isPressed){
@@ -121,6 +126,19 @@ public void run() {
             new ErrorMessage("You don't have enough money.");
         }
     }
+    public void switchCustomer(String name){
+        boolean isNewCustomer = true;
+        for(Customer customer1 : Menu.customers){
+            if(Objects.equals(customer1.getName(), name)){
+                customer = customer1;
+                isNewCustomer = false;
+            }
+        }
+        if(isNewCustomer){
+            customer = new Customer(name);
+            Menu.customers.add(customer);
+        }
+    }
 
     public void launchApplication() {
         applicationThread = new Thread(this);
@@ -146,9 +164,14 @@ public void run() {
                 x += MARGIN;
             }
         }
+        //switch user
+        graphics2D.setColor(Color.WHITE);
+        graphics2D.fillRect(700, 450, 300, 100);
+        graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 45));
+        graphics2D.setColor(Color.BLACK);
+        graphics2D.drawString("Switch user", 730, 510);
         // status messages
         graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 45));
         graphics2D.setColor(Color.WHITE);
         graphics2D.drawString("Your credit: " + customer.getCredit(), 700, 100);
         graphics2D.drawString(customer.name, 700, 700);

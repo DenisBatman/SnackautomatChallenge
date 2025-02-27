@@ -22,24 +22,33 @@ public class Main {
         }
 
         if (choice == 1) {
-            // Start GUI - close scanner
-            scanner.close();
+
             launchGUI();
         } else if (choice == 2) {
             launchCLI();
         } else {
             System.out.println("Invalid choice. Defaulting to GUI.");
-            scanner.close();
+
             launchGUI();
         }
     }
 
-    private static void launchGUI() {
+    public static void launchGUI() {
+        launchGUI(null);
+    }
+    
+    public static void launchGUI(VendingMachine existingMachine) {
         JFrame window = new JFrame("Vending Machine");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
-        VendingMachine vendingMachine = new VendingMachine();
-        vendingMachine.fillEmptyMachine();
+        
+        VendingMachine vendingMachine;
+        if (existingMachine == null) {
+            vendingMachine = new VendingMachine();
+            vendingMachine.fillEmptyMachine();
+        } else {
+            vendingMachine = existingMachine;
+        }
 
         UI userInterface = new UI(vendingMachine);
         window.add(userInterface);
@@ -51,13 +60,27 @@ public class Main {
         userInterface.launchApplication();
     }
 
-    private static void launchCLI() {
-        VendingMachine vendingMachine = new VendingMachine();
-        vendingMachine.fillEmptyMachine();
+    public static void launchCLI() {
+        launchCLI(null);
+    }
+    
+    public static void launchCLI(VendingMachine existingMachine) {
+        try {
+            VendingMachine vendingMachine;
+            if (existingMachine == null) {
+                vendingMachine = new VendingMachine();
+                vendingMachine.fillEmptyMachine();
+            } else {
+                vendingMachine = existingMachine;
+            }
 
-        Menu menu = new Menu(vendingMachine);
-        menu.startMenu();
+            Menu menu = new Menu(vendingMachine);
+            menu.startMenu();
 
-        System.out.println("\nThank you for using the vending machine. Goodbye!");
+            System.out.println("\nThank you for using the vending machine. Goodbye!");
+        } catch (Exception e) {
+            System.err.println("Error launching CLI: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

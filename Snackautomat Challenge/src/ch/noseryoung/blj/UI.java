@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Objects;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.SwingUtilities;
 
 public class UI extends JPanel implements Runnable {
     public  final int WIDTH = 1100;
@@ -27,14 +28,14 @@ public class UI extends JPanel implements Runnable {
         addMouseMotionListener(mouse);
         addMouseListener(mouse);
         String name = new JFrameUserInputField("What is your name?").getString();
-        boolean changedName = false;
+        boolean isNewCustomer = true;
         for (Customer customer : Menu.customers){
             if(Objects.equals(customer.getName(), name)){
                 this.customer = customer;
-                changedName = true;
+                isNewCustomer = false;
             }
         }
-        if(!changedName){
+        if(isNewCustomer){
             customer = new Customer(name);
             Menu.customers.add(customer);
         }
@@ -91,6 +92,18 @@ public void run() {
                         break;
                     }
                 }
+                // 700 is x position of switch user rectangle
+                if((mouse.x >= 700 && mouse.x <= 700 + 300) &&
+                        (mouse.y >= 450 && mouse.y <= 450 + 100)){
+                    switchCustomer(new JFrameUserInputField("Type in your name").getString());
+                }
+                if((mouse.x >= 850 && mouse.x <= 850 + 150) &&
+                        (mouse.y >= 575 && mouse.y <= 575 + 50)){
+                    applicationThread = null;
+                    JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                    frame.dispose();
+                    new Thread(() -> Main.launchCLI(vendingMachine)).start();
+                }
             }
         }
         if(!mouse.isPressed){
@@ -99,15 +112,17 @@ public void run() {
                 selectedProduct = null;
                 int amount = new JFrameUserInputField("How much " + vendingMachine.currentProduct.getName()
                         + " do you want?").getInteger();
-                System.out.println(amount);
-                if(amount <= vendingMachine.currentProduct.products.size()){
-                    double totalPrice = vendingMachine.currentProduct.getPrice() * amount;
-                    payment(totalPrice, amount);
-                }else {
-                    vendingMachine.currentProduct = null;
-                    System.out.println("You dont have that many Credits");
-                    JOptionPane.showMessageDialog(this, "You do not have enough credits for " + amount + " items.", "Insufficient Credits", JOptionPane.WARNING_MESSAGE);
+                if(amount > 0){
+                    if(amount <= vendingMachine.currentProduct.products.size()){
+                        double totalPrice = vendingMachine.currentProduct.getPrice() * amount;
+                        payment(totalPrice, amount);
+                    } else {
+                        new ErrorMessage("We don't have the amount of this product.");
+                    }
+                } else {
+                    new ErrorMessage("Not a valid amount");
                 }
+                vendingMachine.currentProduct = null;
             }
         }
     }
@@ -115,6 +130,21 @@ public void run() {
     private void payment(double totalPrice, int amount) {
         if(customer.getCredit() >= totalPrice){
             vendingMachine.isInPayment(vendingMachine.currentProduct.getName(), customer, totalPrice, amount);
+        } else {
+            new ErrorMessage("You don't have enough money.");
+        }
+    }
+    public void switchCustomer(String name){
+        boolean isNewCustomer = true;
+        for(Customer customer1 : Menu.customers){
+            if(Objects.equals(customer1.getName(), name)){
+                customer = customer1;
+                isNewCustomer = false;
+            }
+        }
+        if(isNewCustomer){
+            customer = new Customer(name);
+            Menu.customers.add(customer);
         }
     }
 
@@ -136,24 +166,33 @@ public void run() {
             counter++;
             if(counter % 3 == 0){
                 x = 250;
-                y += 90;
+                y += 100;
             } else {
                 int MARGIN = 100;
                 x += MARGIN;
             }
         }
-        // status messages
-        graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
-        graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 45));
+        //switch user
         graphics2D.setColor(Color.WHITE);
-        graphics2D.drawString("Your credit: " + customer.getCredit(), 700, 100);
+        graphics2D.fillRect(700, 450, 300, 100);
+        graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 40));
+        graphics2D.setColor(Color.BLACK);
+        graphics2D.drawString("Switch user", 740, 510);
+        
+        graphics2D.setColor(Color.WHITE);
+        graphics2D.fillRect(850, 575, 150, 50);
+        graphics2D.setColor(Color.BLACK);
+        graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 20));
+        graphics2D.drawString("Switch to CLI", 864, 607);
+        // status messages
+        graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 40));
+        graphics2D.setColor(Color.WHITE);
+        graphics2D.drawString("Your credit: " + String.format("%.2f",
+                (double)Math.round(100 * customer.getCredit())/100), 700, 100);
         graphics2D.drawString(customer.name, 700, 700);
         if(vendingMachine.currentProduct == null){
             graphics2D.drawString("Select a product!", 700, 400);
         }
 
     }
-
-
-
 }

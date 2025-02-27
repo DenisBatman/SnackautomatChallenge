@@ -20,9 +20,11 @@ public class Menu {
     }
 
     public void startMenu(){
-        System.out.println("Are you a customer(0), exit (1) or an employee(other number)?");
+        System.out.println("Are you a exit (0), customer (1), employee (2) or want to switch to GUI (3)?");
         int choice = input.nextInt();
         if(choice == 0){
+            exit(0);
+        } else if (choice == 1){
             input.nextLine(); // Clear buffer
             System.out.println("Enter your Name: ");
             String name = input.nextLine();
@@ -34,8 +36,9 @@ public class Menu {
                     customerMenu(customer);
                 }
             }
-        } else if (choice == 1){
-            exit(0);
+        } else if (choice == 3){
+            input.close();
+            Main.launchGUI(vendingMachine);
         } else {
             if(authentification()){
                 Maintenance maintenance = new Maintenance(vendingMachine);
@@ -238,14 +241,6 @@ public class Menu {
                 System.out.println("Insufficient credit. You need $" +
                         String.format("%.2f", totalPrice) + " but you only have $" +
                         String.format("%.2f", customer.getCredit()));
-                /*
-                System.out.println("Would you like to add payment? (y/n)");
-                String addPayment = input.nextLine().trim().toLowerCase();
-
-                if(addPayment.equals("y") || addPayment.equals("yes")) {
-                    vendingMachine.isInPayment(customer, totalPrice);
-                }
-                */
                 continue;
             }
 
@@ -258,9 +253,6 @@ public class Menu {
             String confirm = input.nextLine().trim().toLowerCase();
 
             if(confirm.equals("y") || confirm.equals("yes")) {
-                // Update customer credit
-                customer.setCredit(customer.getCredit() - totalPrice);
-
                 // Process the purchase
                 vendingMachine.startTransaction(selectedProduct.getName(), quantity, customer);
 

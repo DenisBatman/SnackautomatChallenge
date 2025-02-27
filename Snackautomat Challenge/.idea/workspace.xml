@@ -13,6 +13,18 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand />
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -88,7 +100,9 @@
       <updated>1740123063136</updated>
       <workItem from="1740124611968" duration="7891000" />
       <workItem from="1740123064588" duration="4130000" />
-      <workItem from="1740640409609" duration="7369000" />
+      <workItem from="1740640409609" duration="8713000" />
+      <workItem from="1740649659812" duration="5881000" />
+      <workItem from="1740664155948" duration="2407000" />
     </task>
     <servers />
   </component>
@@ -107,30 +121,6 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java</url>
-          <line>97</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java</url>
-          <line>117</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/ch/noseryoung/blj/VendingMachine.java</url>
-          <line>118</line>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <pin-to-top-manager>
       <pinned-members>
         <PinnedItemInfo parentTag="ch.noseryoung.blj.VendingMachine" memberName="currentProduct" />

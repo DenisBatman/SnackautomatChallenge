@@ -13,6 +13,8 @@ public class Maintenance {
     }
 
     public void maintenanceMenu(){
+        boolean isMaintaining = true;
+        do {
         System.out.println("Welcome to the Vending Machine Admin Interface!");
         System.out.println("1. New product");
         System.out.println("2. Fill empty machine");
@@ -32,12 +34,14 @@ public class Maintenance {
             case 5 -> deleteProduct();
             case 6 -> changeCustomerCredit();
             case 7 -> {
-                Menu menu = new Menu(vendingMachine);
-                menu.startMenu();
+                isMaintaining = false;
+                break;
             }
             default -> System.out.println("Invalid choice");
         }
-
+        } while (isMaintaining);
+        Menu menu = new Menu(vendingMachine);
+        menu.startMenu();
     }
     private void addProduct(){
         System.out.println("What should be the new products name?");

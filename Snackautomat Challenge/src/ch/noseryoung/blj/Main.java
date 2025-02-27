@@ -39,6 +39,7 @@ public class Main {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         VendingMachine vendingMachine = new VendingMachine();
+        vendingMachine.fillEmptyMachine();
 
         UI userInterface = new UI(vendingMachine);
         window.add(userInterface);

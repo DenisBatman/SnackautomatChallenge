@@ -8,16 +8,20 @@ public class VendingMachine {
     public ArrayList<ProductSort> productSorts;
     private final int maxAmountOfProducts = 10;
     int vendingMachineCredits;
+    boolean isInPayment = false;
+    ProductSort currentProduct;
 
     public VendingMachine() {
         productSorts = new ArrayList<ProductSort>();
     }
 
     public void fillEmptyMachine(){
-        productSorts.add(new ProductSort("Cola", 1.5));
-        productSorts.add(new ProductSort("Sprite", 1.6));
-        productSorts.add(new ProductSort("Snickers", 2.5));
-        productSorts.add(new ProductSort("Sandwich", 7.5));
+        productSorts.add(new ProductSort("Chips", 3.5));
+        productSorts.add(new ProductSort("Fanta", 1.6));
+        productSorts.add(new ProductSort("M&Ms", 2.5));
+        productSorts.add(new ProductSort("Mars", 2.5));
+        productSorts.add(new ProductSort("Prime", 3.5));
+        productSorts.add(new ProductSort("Twix", 2.5));
     }
 
     public void buyProduct(String productName){
@@ -47,7 +51,7 @@ public class VendingMachine {
 
     public void isInPayment(String productName, Customer customer, double price, int amount)
     {
-        boolean isInPayment = true;
+        isInPayment = true;
         double oldCredit = customer.getCredit();
         double paidCredit = 0;
         double needToPay = price;

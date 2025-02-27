@@ -48,10 +48,8 @@ public class JFrameUserInputField extends JFrame {
             validateButton.addActionListener(new ActionListener (){
                 @Override
                 public void actionPerformed(ActionEvent event) {
-                    if(text != null){
-                        setText(inputField.getText());
-                        setVisible(false);
-                    }
+                    setText(inputField.getText());
+                    setVisible(false);
                 }
             });
         }

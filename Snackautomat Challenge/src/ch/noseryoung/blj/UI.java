@@ -107,6 +107,7 @@ public void run() {
                 if(amount <= vendingMachine.currentProduct.products.size()){
                     double totalPrice = vendingMachine.currentProduct.getPrice() * amount;
                     payment(totalPrice, amount);
+                    vendingMachine.currentProduct = null;
                 }
             }
         }
@@ -143,6 +144,8 @@ public void run() {
         graphics2D.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 45));
         graphics2D.setColor(Color.WHITE);
+        graphics2D.drawString("Your credit: " + customer.getCredit(), 700, 100);
+        graphics2D.drawString(customer.name, 700, 700);
         if(vendingMachine.currentProduct == null){
             graphics2D.drawString("Select a product!", 700, 400);
         }

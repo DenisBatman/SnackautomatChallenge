@@ -57,7 +57,7 @@ public class VendingMachine {
         double needToPay = price;
         do {
             //System.out.println("You need ");
-            Coin coin = getCoin();
+            Coin coin = new PayCoin().paymentInterface(oldCredit, paidCredit, needToPay);
             switch (coin) {
                 case FIVE_CENTS:
                     customer.setCredit(customer.getCredit() - 0.05);
@@ -79,7 +79,7 @@ public class VendingMachine {
                     needToPay -= 0.5;
                     paidCredit += 0.5;
                     break;
-                case DOLLAR:
+                case ONE_DOLLAR:
                     customer.setCredit(customer.getCredit() - 1);
                     needToPay -= 1;
                     paidCredit += 1;
@@ -98,6 +98,8 @@ public class VendingMachine {
                     customer.setCredit(oldCredit);
                     isInPayment = false;
                     break;
+                case null:
+                    break;
                 default:
                     System.out.println("No such Coin");
                     break;
@@ -106,10 +108,8 @@ public class VendingMachine {
                 isInPayment = false;
             }
         } while (isInPayment);
-        System.out.println("Confirm purchase? (y/n)");
-        Scanner input = new Scanner(System.in);
-        String confirm = input.nextLine().trim().toLowerCase();
-        if(!confirm.equals("y") || !confirm.equals("yes")) {
+        String confirm = new JFrameUserInputField("Confirm purchase? (y/n)").getString().trim().toLowerCase();
+        if(!confirm.equals("y") && !confirm.equals("yes")) {
             customer.setCredit(oldCredit);
         } else {
             for(int i = 0; amount > i; i++){
@@ -120,7 +120,7 @@ public class VendingMachine {
 
     //temporary later need to be with ui
     public Coin getCoin(){
-        return Coin.DOLLAR;
+        return Coin.ONE_DOLLAR;
     }
 
 }

@@ -187,7 +187,7 @@ public void run() {
         // status messages
         graphics2D.setFont(new Font("Century Gothic", Font.PLAIN, 40));
         graphics2D.setColor(Color.WHITE);
-        graphics2D.drawString("Your credit: " + String.format("%.2f",
+        graphics2D.drawString("Your credit: " + '\n' + String.format("%.2f",
                 (double)Math.round(100 * customer.getCredit())/100), 700, 100);
         graphics2D.drawString(customer.name, 700, 700);
         if(vendingMachine.currentProduct == null){

@@ -92,11 +92,12 @@ public void run() {
                         break;
                     }
                 }
-                // 700 is x position of switch user rectangle
+                // 700 is x position of switch user rectangle as 450 is the y position
                 if((mouse.x >= 700 && mouse.x <= 700 + 300) &&
                         (mouse.y >= 450 && mouse.y <= 450 + 100)){
                     switchCustomer(new JFrameUserInputField("Type in your name").getString());
                 }
+                // 850 is x position of switch to cli rectangle as 575 is the y position
                 if((mouse.x >= 850 && mouse.x <= 850 + 150) &&
                         (mouse.y >= 575 && mouse.y <= 575 + 50)){
                     applicationThread = null;
